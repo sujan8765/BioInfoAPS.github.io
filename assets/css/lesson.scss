@@ -16,7 +16,7 @@ $color-source:      #360084 !default;
 
 // blockquotes
 $color-callout:     #f4fd9c !default;
-$color-caution:     #cf000e !default;
+$color-caution:     #ee3440 !default;
 $color-challenge:   #eec275 !default;
 $color-checklist:   #dfd2a0 !default;
 $color-discussion:  #eec275 !default;
@@ -25,6 +25,8 @@ $color-objectives:  #daee84 !default;
 $color-prereq:      #9cd6dc !default;
 $color-solution:    #ded4b9 !default;
 $color-testimonial: #fc8dc1 !default;
+$color-tips:        #ee9775 !default;
+$color-notes:       #47acf0 !default;
 
 //----------------------------------------
 // Specialized code blocks.
@@ -44,6 +46,7 @@ $color-testimonial: #fc8dc1 !default;
 .source  { @include cdSetup($color-source); }
 
 .bash, .language-bash     { @include cdSetup($color-source); }
+.terminal                 { @include cdSetup($color-output); }
 .make, .language-make     { @include cdSetup($color-source); }
 .matlab, .language-matlab { @include cdSetup($color-source); }
 .python, .language-python { @include cdSetup($color-source); }
@@ -55,6 +58,7 @@ $color-testimonial: #fc8dc1 !default;
 .output::before,
 .source::before,
 .bash::before, .language-bash::before,
+.terminal::before,
 .make::before, .language-make::before,
 .matlab::before, .language-matlab::before,
 .python::before, .language-python::before,
@@ -71,6 +75,7 @@ $color-testimonial: #fc8dc1 !default;
 .output::before { background-color: #efefef; content: "Output"; }
 .source::before { content: "Code"; }
 .bash::before, .language-bash::before { content: "Bash"; }
+.terminal::before { content: "Terminal"; }
 .make::before, .language-make::before { content: "Make"; }
 .matlab::before, .language-matlab::before { content: "Matlab"; }
 .python::before, .language-python::before { content: "Python"; }
@@ -171,6 +176,8 @@ $codeblock-padding: 5px !default;
 .prereq{ @include bkSetup($color-prereq, "\e124"); }
 .solution{ @include bkSetup($color-solution, "\e105"); }
 .testimonial{ @include bkSetup($color-testimonial, "\e143"); }
+.tips { @include bkSetup($color-tips, "\e086"); }
+.notes { @include bkSetup($color-notes, "\e043"); }
 
 .callout h3,
 .challenge h3,
@@ -180,11 +187,14 @@ $codeblock-padding: 5px !default;
 .objectives h3,
 .prereq h3,
 .solution h3,
-.testimonial h3 {
+.testimonial h3,
+.tips h3,
+.notes h3 {
 font-size: 18px;
 }
 
 .challenge    { background-color: #eec27520; }
+.caution      { background-color: #eb4d571c; }
 .callout      { background-color: #f4fd9c20; }
 .challenge    { background-color: #eec27520; }
 .checklist    { background-color: #dfd2a020; }
@@ -194,6 +204,8 @@ font-size: 18px;
 .prereq       { background-color: #9cd6dc20; }
 .solution     { background-color: #ded4b94d; }
 .testimonial  { background-color: #fc8dc120; }
+.tips         { background-color: #ee977525; }
+.notes        { background-color: #5da9f03d; }
 
 blockquote p {
     margin: 5px;
@@ -339,4 +351,61 @@ kbd {
     box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #FFF inset;
     white-space: nowrap;
     font-style: normal;
+}
+
+//-------------------------------------------
+
+details {
+  border: 2px black solid;
+  border-radius: 5px;
+  padding: 2px 10px;
+  background: #ffffff44;
+  margin: 0 10px;
+}
+
+details > summary {
+  outline: none;
+  cursor: pointer;
+}
+
+details > summary:after {
+  content: "Click here for answer."
+}
+
+details[open] > summary:after {
+  content: "Click here to hide the answer."
+}
+
+
+.bash::before, .language-bash::before {
+  counter-increment: bash;
+  content: "Bash | #" counter(bash);
+}
+
+.container {
+  counter-reset: bash;
+}
+
+@media print  
+{
+    div.highlighter-rouge, blockquote {
+        page-break-inside: avoid;
+    }
+
+    .highlight {
+      -webkit-print-color-adjust: exact;
+      background-color:  #f4f4f4 !important
+    }
+
+    .language-bash::before, .terminal::before, .output::before {
+      -webkit-print-color-adjust: exact;
+      background-color: #e7e7e7 !important
+    }
+
+    :not(pre) > code {
+      -webkit-print-color-adjust: exact; 
+      background-color: #e7e7e7 !important
+    }
+
+    h1, :not(blockquote) > h2 {page-break-before: always;}
 }
