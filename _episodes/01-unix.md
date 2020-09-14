@@ -433,7 +433,7 @@ Lets sort `file1` by chromosome (first column) and position (second column),
 and only display the first 5 columns in top of the sorted lines.
 
 ```sh
-$ sort -k1,1 -k2,2n output.txt | cut -f1-5 | head -n5
+$ sort -k2 -n file1.txt | head -n 5
 CM008455.1      27261226        C       A       intergenic_region
 CM008455.1      38680477        T       G       intergenic_region
 CM008455.1      39264338        G       A       intergenic_region
