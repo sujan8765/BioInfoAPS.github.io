@@ -378,7 +378,7 @@ $ sort -k2n file1.txt
 289401193
 294972840
 
-$ sort -k2nr file1.txt
+$ sort -k2 -n -r file1.txt
 294972840
 289401193
 ...
@@ -387,7 +387,7 @@ $ sort -k2nr file1.txt
 3542278
 ```
 
-Tip: `-k2nr` is shortcut for `-k 2 -n -r`.
+Tip: You can use `-k2nr` as a shortcut for `-k 2 -n -r`.
 
 ### Replacing text
 
