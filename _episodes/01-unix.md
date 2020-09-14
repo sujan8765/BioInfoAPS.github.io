@@ -45,7 +45,7 @@ $ cd /blue/general_workshop/<username>
 
 ```sh
 $ pwd
-/home/<username>
+/blue/general_workshop/<username>
 ```
 
 ### Displaying files and folders in current location
@@ -68,48 +68,6 @@ The command displays the properties of the files
 `w` means write perimision 
 `x` means read execution perimision
 
-### Copying files
-
-`cp` is used for copying files. `cp -R` can be used for copying entire directories. `-R` stands for recursive.
-Lets copy a demo file and a demo folder from share folder to you current working directory.
-
-```sh
-$ cp ../share/file1.txt ./file1.txt
-
-$ cp file1.txt file2/txt
-
-$ cp -R ../share/dir1 ./
-
-$ ls
-dir1     file1.txt     file2.txt
-```
-
-Tip: `..` stands for parent directory and `.` stands for current directory.
-
-### Moving files
-
-`mv` is used for moving files or directories. Unlike copying, moving deletes the original copy.
-
-```sh
-$ mv file2.txt newfile.txt
-
-$ ls
-dir1     file1.txt     newfile.txt
-```
-
-### Deleting files
-
-`rm` can be used for deleting files (and directories too with `-r` recursive argument.)
-
-```sh
-$ rm newfile.txt
-
-$ ls
-dir1     file1.txt
-```
-
-Tip: You can use <kbd>Tab</kbd> to autocomplete paths and filenames.
-
 ### Creating directories
 
 `mkdir` creates a new directory called in current path.
@@ -120,7 +78,7 @@ then use `ls` command to check if the directory was succesfully created.
 $ mkdir newdir
 
 $ ls
-dir1     file1.txt     newdir
+newdir
 ```
 
 ### Changing directories
@@ -130,7 +88,7 @@ Lets change out current path to the directory we just created.
 Use `pwd` to check the current path.
 
 ```sh
-$ mkdir newdir
+$ cd newdir
 
 $ pwd
 /blue/general_workshop/<username>/newdir
@@ -149,6 +107,48 @@ $ pwd
 /blue/general_workshop/<username>
 ```
 
+### Copying files
+
+`cp` is used for copying files. `cp -R` can be used for copying entire directories. `-R` stands for recursive.
+Lets copy a demo file and a demo folder from share folder to you current working directory.
+
+```sh
+$ cp ../share/file1.txt ./file1.txt
+
+$ cp file1.txt file2/txt
+
+$ cp -R ../share/dir1 ./
+
+$ ls
+dir1     file1.txt     file2.txt     newdir
+```
+
+Tip: `..` stands for parent directory and `.` stands for current directory.
+
+### Moving files
+
+`mv` is used for moving files or directories. Unlike copying, moving deletes the original copy.
+
+```sh
+$ mv file2.txt newfile.txt
+
+$ ls
+dir1     file1.txt     newfile.txt     newdir
+```
+
+### Deleting files
+
+`rm` can be used for deleting files (and directories too with `-r` recursive argument.)
+
+```sh
+$ rm newfile.txt
+
+$ ls
+dir1     file1.txt     newdir
+```
+
+Tip: You can use <kbd>Tab</kbd> to autocomplete paths and filenames.
+
 ### Removing directories
 
 `rmdir` removes the specified directory from current path. 
@@ -156,7 +156,7 @@ Lets remove the `newdir` we created earlier and
 check if it is gone using `ls`.
 ```sh
 $ ls
-newdir
+dir1     file1.txt     newdir
 
 $ rmdir newdir
 
